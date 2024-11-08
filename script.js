@@ -22,6 +22,7 @@ function logToPage(message) {
     logArea.textContent += message + '\n'; // Append the message to the log area
 }
 
+/*
 // Modified fetchUnreleasedVersions function with logging to the page console
 async function fetchUnreleasedVersions() {
     
