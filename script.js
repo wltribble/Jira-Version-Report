@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
+// document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
+document.addEventListener('DOMContentLoaded');
 
 logToPage('script.js has loaded successfully.');
 
@@ -84,3 +85,4 @@ async function generateReport(versionName) {
         logToPage('Error fetching data: ' + error.message); // Logs to page console
     }
 }
+*/
