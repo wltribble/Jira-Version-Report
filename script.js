@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
 
 const jiraDomain = 'https://syncrocal.atlassian.net'; // Replace with your Jira domain
-const apiToken = 'API_TOKEN'; // Replace with your API token
-const email = 'MY_EMAIL'; // Replace with your Jira email
+const email =  process.env.MY_EMAIL;
+const apiToken = process.env.JIRA_API_TOKEN;
 
 const headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
