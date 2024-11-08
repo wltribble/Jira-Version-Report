@@ -1,5 +1,6 @@
 async function generateReport() {
-    const versionName = document.getElementById('versionName').value;
+    // const versionName = document.getElementById('versionName').value;
+    const versionName = '10003';
     if (!versionName) {
         alert('Please enter a version name.');
         return;
