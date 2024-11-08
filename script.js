@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
 
-const jiraDomain = 'https://your-domain.atlassian.net'; // Replace with your Jira domain
-const apiToken = 'YOUR_API_TOKEN'; // Replace with your API token
-const email = 'YOUR_EMAIL'; // Replace with your Jira email
+const jiraDomain = 'https://syncrocal.atlassian.net'; // Replace with your Jira domain
+const apiToken = 'API_TOKEN'; // Replace with your API token
+const email = 'MY_EMAIL'; // Replace with your Jira email
 
 const headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
@@ -10,7 +10,7 @@ headers.append('Content-Type', 'application/json');
 
 // Fetch unreleased versions
 async function fetchUnreleasedVersions() {
-    const versionsEndpoint = `${jiraDomain}/rest/api/3/project/YOUR_PROJECT_KEY/version`; // Replace with your project key
+    const versionsEndpoint = `${jiraDomain}/rest/api/3/project/DATUM/version`; // Replace with your project key
 
     try {
         const response = await fetch(versionsEndpoint, { headers });
@@ -38,7 +38,7 @@ function displayVersions(versions) {
 
 // Generate report for a selected version
 async function generateReport(versionName) {
-    const issuesEndpoint = `${jiraDomain}/rest/api/3/search?jql=fixVersion="${versionName}"&fields=status,customfield_10004`; // customfield_10004 is an example for Story Points
+    const issuesEndpoint = `${jiraDomain}/rest/api/3/search?jql=fixVersion="${versionName}"&fields=status,customfield_10005`; // customfield_10004 is an example for Story Points
 
     try {
         const response = await fetch(issuesEndpoint, { headers });
