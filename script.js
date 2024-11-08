@@ -6,8 +6,8 @@ async function generateReport() {
     }
 
     const jiraDomain = 'https://your-domain.atlassian.net'; // Replace with your Jira domain
-    const apiToken = 'YOUR_API_TOKEN'; // Replace with your API token
-    const email = 'YOUR_EMAIL'; // Replace with your email associated with the Jira account
+    const apiToken = 'ATATT3xFfGF0r-0pLL7hHtgR2mqiA-FEzBVldrnXgoVozbtI11F7FvfGQxJvXGxraNhZO5PiZE5wDfk9JuNT3cqC6pHcpw6wmV-em9A-723IIE3Ep8Q_gCS_67zGCWY1munCEOv2PKSrmfLx0GuLeVO8yFAX96MRL5eReWB8wOoQ79aPGjUmi4Q=D10C6427'; // Replace with your API token
+    const email = 'wtribble@wharton.upenn.edu'; // Replace with your email associated with the Jira account
 
     const headers = new Headers();
     headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
