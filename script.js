@@ -14,12 +14,12 @@ function logToPage(message) {
     logArea.textContent += message + '\n'; // Append the message to the log area
 }
 
-logToPage(`Jira Domain: ${jiraDomain}`);
-logToPage(`Email: ${email}`);
-logToPage(`API Token: ${apiToken ? 'Available' : 'Not Set'}`);
-
 // Modified fetchUnreleasedVersions function with logging to the page console
 async function fetchUnreleasedVersions() {
+    logToPage(`Jira Domain: ${jiraDomain}`);
+    logToPage(`Email: ${email}`);
+    logToPage(`API Token: ${apiToken ? 'Available' : 'Not Set'}`);
+    
     const versionsEndpoint = `${jiraDomain}/rest/api/3/project/YOUR_PROJECT_KEY/version`;
 
     try {
