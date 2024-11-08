@@ -4,10 +4,6 @@ const jiraDomain = 'https://syncrocal.atlassian.net'; // Replace with your Jira 
 const email =  process.env.MY_EMAIL;
 const apiToken = process.env.JIRA_API_KEY;
 
-logToPage(`Jira Domain: ${jiraDomain}`);
-logToPage(`Email: ${email}`);
-logToPage(`API Token: ${apiToken ? 'Available' : 'Not Set'}`);
-
 const headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
 headers.append('Content-Type', 'application/json');
@@ -17,6 +13,10 @@ function logToPage(message) {
     const logArea = document.getElementById('consoleLog');
     logArea.textContent += message + '\n'; // Append the message to the log area
 }
+
+logToPage(`Jira Domain: ${jiraDomain}`);
+logToPage(`Email: ${email}`);
+logToPage(`API Token: ${apiToken ? 'Available' : 'Not Set'}`);
 
 // Modified fetchUnreleasedVersions function with logging to the page console
 async function fetchUnreleasedVersions() {
