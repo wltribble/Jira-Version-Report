@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
 
 logToPage('script.js has loaded successfully.');
 
+/*
 const jiraDomain = 'https://syncrocal.atlassian.net'; // Replace with your Jira domain
 const email =  process.env.MY_EMAIL;
 const apiToken = process.env.JIRA_API_KEY;
@@ -13,6 +14,7 @@ logToPage('API Token: ${apiToken ? 'Available' : 'Not Set'}');
 const headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
 headers.append('Content-Type', 'application/json');
+*/
 
 // Function to log messages to the console log area in HTML
 function logToPage(message) {
