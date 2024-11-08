@@ -1,19 +1,43 @@
-async function generateReport() {
-    // const versionName = document.getElementById('versionName').value;
-    const versionName = '10003';
-    if (!versionName) {
-        alert('Please enter a version name.');
-        return;
+document.addEventListener('DOMContentLoaded', fetchUnreleasedVersions);
+
+const jiraDomain = 'https://your-domain.atlassian.net'; // Replace with your Jira domain
+const apiToken = 'YOUR_API_TOKEN'; // Replace with your API token
+const email = 'YOUR_EMAIL'; // Replace with your Jira email
+
+const headers = new Headers();
+headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
+headers.append('Content-Type', 'application/json');
+
+// Fetch unreleased versions
+async function fetchUnreleasedVersions() {
+    const versionsEndpoint = `${jiraDomain}/rest/api/3/project/YOUR_PROJECT_KEY/version`; // Replace with your project key
+
+    try {
+        const response = await fetch(versionsEndpoint, { headers });
+        const versions = await response.json();
+
+        const unreleasedVersions = versions.filter(version => !version.released);
+        displayVersions(unreleasedVersions);
+    } catch (error) {
+        console.error('Error fetching versions:', error);
     }
+}
 
-    const jiraDomain = 'https://your-domain.atlassian.net'; // Replace with your Jira domain
-    const apiToken = 'ATATT3xFfGF0r-0pLL7hHtgR2mqiA-FEzBVldrnXgoVozbtI11F7FvfGQxJvXGxraNhZO5PiZE5wDfk9JuNT3cqC6pHcpw6wmV-em9A-723IIE3Ep8Q_gCS_67zGCWY1munCEOv2PKSrmfLx0GuLeVO8yFAX96MRL5eReWB8wOoQ79aPGjUmi4Q=D10C6427'; // Replace with your API token
-    const email = 'wtribble@wharton.upenn.edu'; // Replace with your email associated with the Jira account
+// Display versions in a clickable list
+function displayVersions(versions) {
+    const versionList = document.getElementById('versionList');
+    versionList.innerHTML = '';
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(email + ':' + apiToken));
-    headers.append('Content-Type', 'application/json');
+    versions.forEach(version => {
+        const listItem = document.createElement('li');
+        listItem.textContent = version.name;
+        listItem.onclick = () => generateReport(version.name);
+        versionList.appendChild(listItem);
+    });
+}
 
+// Generate report for a selected version
+async function generateReport(versionName) {
     const issuesEndpoint = `${jiraDomain}/rest/api/3/search?jql=fixVersion="${versionName}"&fields=status,customfield_10004`; // customfield_10004 is an example for Story Points
 
     try {
@@ -42,6 +66,7 @@ async function generateReport() {
     }
 }
 
+// Render the chart
 function renderChart(totalIssues, completedIssues, totalPoints, completedPoints) {
     const ctx = document.getElementById('versionReportChart').getContext('2d');
     new Chart(ctx, {
